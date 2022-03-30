@@ -1,11 +1,21 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from . import config
 
 db = SQLAlchemy()
 
-def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
+def create_app(environment="dev"):
+    app = Flask(__name__)
+
+    config_map = {
+        'dev': config.Development(),
+        'test': config.Testing(),
+        'prod': config.Production(),
+    }
+    config_obj = config_map[environment.lower()]
+
+    app.config.from_object(config_obj)
 
     # ensure the instance folder exists
     try:
@@ -13,12 +23,6 @@ def create_app(test_config=None):
     except OSError:
         pass
  
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        SQLALCHEMY_DATABASE_URI="sqlite:///" + app.instance_path + "/db.sqlite",
-        SQLALCHEMY_TRACK_MODIFICATIONS=False
-    )
-
     # SQLAlchemy init
     db.init_app(app)
 

@@ -1,12 +1,14 @@
-from flask import Flask, Blueprint, jsonify, abort, make_response, request
+from flask import Flask, Blueprint, jsonify, request
 from app import db
-from app.models.product import Product, product_schema
+from app.schemas.product_schema import product_schema
+from app.models.product import Product
 
 
 bp = Blueprint('product', __name__, url_prefix='/api/v1/product')
 
 @bp.route('/', methods=['GET'])
 def get_products():
+    """Get all products"""
     product = Product.query.all()
     result = product_schema.dump(product, many=True)
 
@@ -14,6 +16,7 @@ def get_products():
 
 @bp.route('/<int:productid>', methods=['GET'])
 def get_product(productid):
+    """Get a product by id"""
     product = Product.query.get_or_404(productid)
     result = product_schema.dump(product)
 
@@ -21,6 +24,7 @@ def get_product(productid):
 
 @bp.route('/category/<int:categoryid>', methods=['GET'])
 def get_products_in_category(categoryid):
+    """Get all products in a category by category id"""
     product = Product.query.filter_by(category_id=categoryid).all()
     result = product_schema.dump(product, many=True)
 
@@ -28,6 +32,7 @@ def get_products_in_category(categoryid):
 
 @bp.route('/', methods=['POST'])
 def create_product():
+    """Create new product"""
     json_data = request.get_json()
 
     if not json_data:
@@ -48,6 +53,7 @@ def create_product():
 
 @bp.route('/<int:productid>', methods=['PUT'])
 def update_product(productid):
+    """Update an existing product"""
     product = Product.query.get_or_404(productid)
     json_data = request.get_json()
 
@@ -69,6 +75,7 @@ def update_product(productid):
 
 @bp.route('/<int:productid>', methods=['DELETE'])
 def delete_product(productid):
+    """Delete a product by id"""
     query = Product.query.get_or_404(productid)
 
     db.session.delete(query)
