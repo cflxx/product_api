@@ -2,7 +2,6 @@
 Simple REST API in Python, built with Flask.
 
 ## Packages used
----
 * Flask
 * Flask-sqlalchemy
 * marshmallow
@@ -10,7 +9,6 @@ Simple REST API in Python, built with Flask.
     and other minor ones
     
 ## Usage
----
 1. Clone the repository
 2. Open terminal/cmd in dir
 3. Install virtualenv
@@ -19,14 +17,20 @@ Simple REST API in Python, built with Flask.
     ~~~
 4. Create and activate a new virtual environment
     ~~~sh
-    > python3 -m venv venv
-    > venv\Script\activate #Windows
+    # Windows
+    > python -m venv venv
+    > venv\Scripts\activate
     ~~~
 5. Install requirements
     ~~~sh
     > pip install -r requirements.txt
     ~~~
-6. Run
+6. Set environment variables
+    ~~~sh
+    > set FLASK_APP="app:create_app("dev")"
+    > set FLASK_ENV=development
+    ~~~
+7. Run
     * a. Tests
         ~~~sh
         > python -m unittest discover
@@ -38,7 +42,6 @@ Simple REST API in Python, built with Flask.
         ~~~
 
 ## API Schema
----
 ### **Product**
 
 |Method| Route       | Description
@@ -60,8 +63,7 @@ Simple REST API in Python, built with Flask.
 | PUT    | /api/v1/productcategory/< productcategory >     | Edit existing productcategory by id
 | DELETE | /api/v1/productcategory/< productcategoryid >   |Delete existing productcategory by id
 
-## Unittest Coverage
----
+## Unittest coverage
 ~~~sh
 Name                                    Stmts   Miss  Cover
 -----------------------------------------------------------
