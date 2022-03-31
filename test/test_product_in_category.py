@@ -1,10 +1,9 @@
-from unittest import TestCase
+import unittest
 import json
-import os
 from app import create_app, db
-from app.models.product import Product
 
-class ProductInCategoryTest(TestCase):
+
+class ProductInCategoryTest(unittest.TestCase):
     """Test product API"""
 
     def setUp(self):

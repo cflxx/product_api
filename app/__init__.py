@@ -1,7 +1,12 @@
 import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
 from . import config
+from .db_init import init_db_command
+from .api import product, productcategory
+
 
 db = SQLAlchemy()
 
@@ -22,17 +27,15 @@ def create_app(environment="dev"):
         os.makedirs(app.instance_path)
     except OSError:
         pass
- 
+
     # SQLAlchemy init
     db.init_app(app)
 
     # table creation / seeding
-    from .db_init import init_db_command
     app.cli.add_command(init_db_command)
 
     # routes
-    from .api import product, productcategory
     app.register_blueprint(product.bp)
     app.register_blueprint(productcategory.bp)
-    
+
     return app

@@ -1,14 +1,14 @@
+from sqlite3 import Connection as SQLite3Connection
+
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from sqlalchemy import event
+from sqlalchemy.engine import Engine
 
 from . import db
 from .models.product import Product
 from .models.productcategory import ProductCategory
-
-from sqlalchemy import event
-from sqlalchemy.engine import Engine
-from sqlite3 import Connection as SQLite3Connection
 
 
 @event.listens_for(Engine, "connect")
@@ -37,7 +37,8 @@ def seed_db():
 
 
 @click.command('init-db')
-@click.option("--seed", is_flag=True, show_default=True, default=False, help="Seed db with initial data.")
+@click.option("--seed", is_flag=True, show_default=True,\
+         default=False, help="Seed db with initial data.")
 @with_appcontext
 def init_db_command(seed):
     """Clear the existing data and create new tables."""

@@ -1,7 +1,7 @@
-from flask import Flask, Blueprint, jsonify, request
 from app import db
-from app.schemas.productcategory_schema import productcategory_schema
 from app.models.productcategory import ProductCategory
+from app.schemas.productcategory_schema import productcategory_schema
+from flask import Blueprint, Flask, jsonify, request
 
 
 bp = Blueprint('productcategory', __name__, url_prefix='/api/v1/productcategory')
@@ -40,7 +40,7 @@ def create_productcategory():
     db.session.add(new_productcategory)
     db.session.commit()
     result = productcategory_schema.dump(ProductCategory.query.get(new_productcategory.id))
-    
+   
     return result.data, 201
 
 @bp.route('/<int:productcategoryid>', methods=['PUT'])

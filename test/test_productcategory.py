@@ -1,10 +1,10 @@
-from unittest import TestCase
-import os
 import json
-from app import create_app, db
-from app.models.productcategory import ProductCategory
+import unittest
 
-class ProductCategoryTest(TestCase):
+from app import create_app, db
+
+
+class ProductCategoryTest(unittest.TestCase):
     """Test productcategory API"""
 
     def setUp(self):
@@ -37,7 +37,7 @@ class ProductCategoryTest(TestCase):
     def test_get_productcategory_by_id(self):
         """Test getting product by id"""
         res = self.client.post('/api/v1/productcategory/', json=dict(name='testproductcategory1'))
-        
+    
         productcategory = json.loads(res.get_data(as_text=True))
 
         res = self.client.get('/api/v1/productcategory/' + str(productcategory.get('id')))
@@ -48,7 +48,7 @@ class ProductCategoryTest(TestCase):
     def test_edit_productcategory_by_id(self):
         """Test editing an existing product"""
         res = self.client.post('/api/v1/productcategory/', json=dict(name='testproductcategory1'))
-        
+     
         productcategory = json.loads(res.get_data(as_text=True))
 
         new_productcategory_data = dict(name='testproductcategory3')
@@ -62,7 +62,7 @@ class ProductCategoryTest(TestCase):
     def test_delete_productcategory_by_id(self):
         """Test deleting an existing product"""
         res = self.client.post('/api/v1/productcategory/', json=dict(name='testproductcategory1'))
-        
+       
         productcategory = json.loads(res.get_data(as_text=True))
 
         res = self.client.delete('/api/v1/productcategory/' + str(productcategory.get('id')))

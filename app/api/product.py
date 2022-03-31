@@ -1,7 +1,7 @@
-from flask import Flask, Blueprint, jsonify, request
 from app import db
-from app.schemas.product_schema import product_schema
 from app.models.product import Product
+from app.schemas.product_schema import product_schema
+from flask import Blueprint, Flask, jsonify, request
 
 
 bp = Blueprint('product', __name__, url_prefix='/api/v1/product')

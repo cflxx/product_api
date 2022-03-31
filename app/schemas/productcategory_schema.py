@@ -1,5 +1,5 @@
-from marshmallow import Schema, fields, validate, post_load
 from app.models.productcategory import ProductCategory
+from marshmallow import Schema, fields, post_load, validate
 
 
 class ProductCategorySchema(Schema):
