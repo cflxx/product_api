@@ -27,6 +27,7 @@ Simple REST API in Python, built with Flask.
     ~~~
 6. Set environment variables
     ~~~sh
+    # Windows
     > set FLASK_APP=app:create_app("dev")
     > set FLASK_ENV=development
     ~~~
