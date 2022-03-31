@@ -45,24 +45,24 @@ Simple REST API in Python, built with Flask.
 ## API Schema
 ### **Product**
 
-|Method| Route       | Description
+|Method|Route|Description
 |-|-|-|
 | GET    | /api/v1/product                              | Get all products
 | GET    | /api/v1/product/< productid >                | Get a single product by id
 | GET    | /api/v1/product/category/< categoryid >      | Get all products in category
-| POST   | /api/v1/product/category/                    | Add new product
+| POST   | /api/v1/product/                             | Add new product
 | PUT    | /api/v1/product/< productid >                | Edit existing product by id
 | DELETE | /api/v1/product/< productid >                | Delete existing product by id
 
 ### **Productcategory**
 
-|Method| Route       | Description
+|Method|Route|Description
 |-|-|-|
 | GET    | /api/v1/productcategory                         | Get all productcategories
-| GET    | /api/v1/productcategory/< productid >           | Get a single productcategory by id
+| GET    | /api/v1/productcategory/< productcategoryid >   | Get a single productcategory by id
 | POST   | /api/v1/productcategory/                        | Add new productcategory
 | PUT    | /api/v1/productcategory/< productcategory >     | Edit existing productcategory by id
-| DELETE | /api/v1/productcategory/< productcategoryid >   |Delete existing productcategory by id
+| DELETE | /api/v1/productcategory/< productcategoryid >   | Delete existing productcategory by id
 
 ## Unittest coverage
 ~~~sh
