@@ -41,12 +41,18 @@ def create_product():
     # Validate and deserialize input
     deserialize_result = product_schema.load(json_data)
     if (any(deserialize_result.errors)):
-        return new_product.errors, 400
+        return deserialize_result.errors, 400
 
     new_product = deserialize_result.data
 
     db.session.add(new_product)
-    db.session.commit()
+
+    # foreign key constraint check
+    try:
+        db.session.commit()
+    except:
+        return "Productcategory doesn't exist", 400
+
     result = product_schema.dump(Product.query.get(new_product.id))
     
     return result.data, 201
@@ -69,7 +75,11 @@ def update_product(productid):
     product.description = new_product.data.description
     product.category_id = new_product.data.category_id
 
-    db.session.commit()
+    # foreign key constraint check
+    try:
+        db.session.commit()
+    except:
+        return "Productcategory doesn't exist", 400
 
     return product_schema.dump(product).data, 201
 

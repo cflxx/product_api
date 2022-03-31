@@ -27,7 +27,7 @@ Simple REST API in Python, built with Flask.
     ~~~
 6. Set environment variables
     ~~~sh
-    > set FLASK_APP="app:create_app("dev")"
+    > set FLASK_APP=app:create_app("dev")
     > set FLASK_ENV=development
     ~~~
 7. Run
@@ -68,18 +68,18 @@ Simple REST API in Python, built with Flask.
 Name                                    Stmts   Miss  Cover
 -----------------------------------------------------------
 app\__init__.py                            21      0   100%
-app\api\product.py                         53      4    92%
+app\api\product.py                         59      6    90%
 app\api\productcategory.py                 47      4    91%
 app\config.py                              12      0   100%
-app\db_init.py                             25     13    48%
+app\db_init.py                             34     13    62%
 app\models\product.py                      10      1    90%
 app\models\productcategory.py               5      0   100%
 app\schemas\product_schema.py              11      0   100%
 app\schemas\productcategory_schema.py       9      0   100%
 test\__init__.py                            0      0   100%
 test\test_product.py                       46      1    98%
-test\test_product_in_category.py           28      1    96%
+test\test_product_in_category.py           31      1    97%
 test\test_productcategory.py               46      1    98%
 -----------------------------------------------------------
-TOTAL                                     313     25    92%
+TOTAL                                     331     27    92%
 ~~~

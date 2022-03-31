@@ -46,6 +46,14 @@ class ProductInCategoryTest(TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertIn('testproduct2', str(res.data))
 
+    def test_add_product_to_nonexistent_category(self):
+        res = self.client.post('/api/v1/product/',\
+             json=dict(name='testproduct2', 
+                       description='testproduct2 desc',
+                       category_id=-1))
+    
+        self.assertEqual(res.status_code, 400)
+
 
 if __name__ == "__main__":
     unittest.main()
