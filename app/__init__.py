@@ -4,8 +4,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 from . import config
-from .db_init import init_db_command
-from .api import product, productcategory
 
 
 db = SQLAlchemy()
@@ -29,9 +27,11 @@ def create_app(environment="dev"):
         pass
 
     # SQLAlchemy init
+    from .db_init import init_db_command
     db.init_app(app)
 
     # table creation / seeding
+    from .api import product, productcategory
     app.cli.add_command(init_db_command)
 
     # routes

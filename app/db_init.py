@@ -6,9 +6,9 @@ from flask.cli import with_appcontext
 from sqlalchemy import event
 from sqlalchemy.engine import Engine
 
-from . import db
 from .models.product import Product
 from .models.productcategory import ProductCategory
+from . import db
 
 
 @event.listens_for(Engine, "connect")
